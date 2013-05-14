@@ -50,8 +50,15 @@ rails_upgrade will automatically generate contents for a few key files. Run the 
 #### Gotcha
 
 rails_upgrade will pull the application module name from the name of the parent directory. If there is a period in this directory name, it will mess up and only use the portion of the directory name after the period. Do not trust the rails_upgrade plugin to get the application name right. This gotcha is the reason we will in the next section initialize the new rails 3 application from the parent directory rather than the root directory, as is suggested in the rails 3 upgrade railscast. 
-This bug is fixed in my branch of rails_upgrade: https://github.com/HandyAndyShortStack/rails_upgrade
-pull request: https://github.com/rails/rails_upgrade/pull/22
-to install the plugin from this branch, use script/plugin install https://github.com/HandyAndyShortStack/rails_upgrade.git
+
+This bug is fixed in my branch of rails_upgrade: https://github.com/HandyAndyShortStack/rails_upgrade  
+pull request: https://github.com/rails/rails_upgrade/pull/22  
+to install the plugin from this branch, use script/plugin install https://github.com/HandyAndyShortStack/rails_upgrade.git  
 
 ### Installing Rails 3
+
+`cd` to the parent directory of the rails project's root directory. Now install rails 3.0.6 and run rails new <project name> (where <project name> is the name of the rails project being upgraded). This command will generate a new rails 3 app on top of the old rails 2 app. Files and directories from both apps will be conserved unless they are in conflict. You will be notified of each file conflict and asked for input on how to resolve them. The default response is to keep the new rails 3 version. Since all the important conflicting files should already be backed up, you can just hold down enter to overwrite all the conflicting files.
+
+### Merging the Backup Files
+
+You will now have to open all your backup files and do a side by side comparison with the new versions. Refer to the rails_upgrade documentation on `rake rails:upgrade:routes, rake rails:upgrade:gems`, and `rake rails:upgrade:configuration`. Have the outputs of these commands handy as well. This can be a very tedious and delicate process. Keep your head on your shoulders and don't forget to include any additional files you have backed up!
