@@ -102,4 +102,53 @@ Update the rails version in the Gemfile, then run `bundle update`.  That's all i
 
 ## 3.0.10 to 3.1.0 - Enter the Asset Pipeline
 
+For me, this update was a process of identifying and fixing a few unrelated little bugs. To reflect the nature of this experience, I present the changes i made in the form of an unordered list.
+* update the rails version in the Gemfile
+* remove config.action_view.debug_rjs from config/environments/development.rb
+* change ActionController::Base.cookie_verifier_secret to ActionController::Base.config.secret_token in config/initializers/cookie_verification_secret.rb.
+* remove 'filter_parameter_logging :password' from app/controllers/application_controller.rb, if it is present.
+* ignore the SECURITY WARNING: No secret option provided to Rack::Session::Cookie that pops up when starting the server - this seems to be a bug in rails - further reading: https://github.com/rails/rails/issues/7372https://github.com/rails/rails/issues/7372
+This would be a good time to begin using ruby 1.9.3 if you are not already doing so.  If you are using mysql, you should switch over to the mysql2 gem now.
+
+### Implementing Use of the Asset Pipeline
+
+After upgrading to rails 3.1, static assets can now be served through the asset pipeline. Generally, the process will be to move assets from the public folder to the app/assets folder. Image urls/paths will be simplified, and both javascripts and stylesheets can make use of manifest files. Using manifests will affect load order, so be careful if artful use of load order is important to your javascripts and stylesheets.
+
+The steps needed to make this shift will depend greatly on the structure of your app, so the best advice I can give here is to review the following resources thoroughly and proceed accordingly:
+* http://guides.rubyonrails.org/asset_pipeline.html, especially http://guides.rubyonrails.org/asset_pipeline.html#upgrading-from-old-versions-of-rails
+* http://railscasts.com/episodes/282-upgrading-to-rails-3-1?view=asciicast
+* http://railscasts.com/episodes/279-understanding-the-asset-pipeline?view=asciicast
+There may be some server configuration necessary in production. Be sure to read http://guides.rubyonrails.org/asset_pipeline.html#server-configuration.
+
+### SASS, CoffeeScript, and jQuery
+
+Another major change in rails 3.1 was the introduction of SASS and coffeescript by default, and the shift from prototype to jQuery as the default javascript library. Your app can be modified to reflect this, as detailed in http://guides.rubyonrails.org/asset_pipeline.html#upgrading-from-old-versions-of-rails and http://railscasts.com/episodes/282-upgrading-to-rails-3-1?view=asciicast, by the addition of the following lines to the Gemfile:
+
+```ruby
+group :assets do
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
+end
+
+gem 'jquery-rails'
+```
+
+SASS becomes especially useful in conjunction with the asset pipeline, as ERB and additional url functions become available within SASS files. See http://guides.rubyonrails.org/asset_pipeline.html#css-and-sass. Switching to SASS is easy: just add the '.scss' extension to your stylesheets' file names.
+
+## 3.1.0 to 3.1.3
+
+Update the rails version in the Gemfile, then run `bundle update`.
+
+## 3.1.3 to 3.2.0
+
+There is little to do in this step beyond updating the Gemfile.  Here is a railscast that documents changes to a rails 3.1 application that can be made to match the defaults in a new rails 3.2 application:
+http://railscasts.com/episodes/318-upgrading-to-rails-3-2?view=asciicast
+
+There now may be a lot of '`WARN Could not determine content-length of response body`' warnings now in your development server logger.  They are harmless.  http://stackoverflow.com/questions/7082364/what-does-warn-could-not-determine-content-length-of-response-body-mean-and-h
+
+## 3.2.0 to 3.2.13
+
+Update the rails version in the Gemfile, then run bundle update. Check to make sure everything works, then give yourself a pat on the back.
+
 
