@@ -134,7 +134,7 @@ end
 gem 'jquery-rails'
 ```
 
-SASS becomes especially useful in conjunction with the asset pipeline, as ERB and additional url functions become available within SASS files. See http://guides.rubyonrails.org/asset_pipeline.html#css-and-sass. Switching to SASS is easy: just add the '.scss' extension to your stylesheets' file names.
+SASS becomes especially useful in conjunction with the asset pipeline, as ERB and additional url functions become available within SASS files. See http://guides.rubyonrails.org/asset_pipeline.html#css-and-sass. Switching to SASS is easy; just add the '.scss' extension to your stylesheets' file names.
 
 ## 3.1.0 to 3.1.3
 
