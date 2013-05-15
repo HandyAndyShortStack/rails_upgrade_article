@@ -102,12 +102,13 @@ Update the rails version in the Gemfile, then run `bundle update`.  That's all i
 
 ## 3.0.10 to 3.1.0 - Enter the Asset Pipeline
 
-For me, this update was a process of identifying and fixing a few unrelated little bugs. To reflect the nature of this experience, I present the changes i made in the form of an unordered list.
+For me, this update was a process of identifying and fixing a few unrelated little bugs. To reflect the nature of this experience, I present the changes i made in the form of an unordered list:
 * update the rails version in the Gemfile
 * remove config.action_view.debug_rjs from config/environments/development.rb
 * change ActionController::Base.cookie_verifier_secret to ActionController::Base.config.secret_token in config/initializers/cookie_verification_secret.rb.
 * remove 'filter_parameter_logging :password' from app/controllers/application_controller.rb, if it is present.
-* ignore the SECURITY WARNING: No secret option provided to Rack::Session::Cookie that pops up when starting the server - this seems to be a bug in rails - further reading: https://github.com/rails/rails/issues/7372https://github.com/rails/rails/issues/7372
+* ignore the SECURITY WARNING: No secret option provided to Rack::Session::Cookie that pops up when starting the server - this seems to be a bug in rails - further reading: https://github.com/rails/rails/issues/7372https://github.com/rails/rails/issues/7372  
+
 This would be a good time to begin using ruby 1.9.3 if you are not already doing so.  If you are using mysql, you should switch over to the mysql2 gem now.
 
 ### Implementing Use of the Asset Pipeline
