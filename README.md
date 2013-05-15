@@ -48,7 +48,7 @@ rails_upgrade will pull the application module name from the name of the parent 
 
 This bug is fixed in my branch of rails_upgrade: https://github.com/HandyAndyShortStack/rails_upgrade  
 pull request: https://github.com/rails/rails_upgrade/pull/22  
-to install the plugin from this branch, use script/plugin install https://github.com/HandyAndyShortStack/rails_upgrade.git  
+to install the plugin from this branch, use `script/plugin install https://github.com/HandyAndyShortStack/rails_upgrade.git`
 
 ### Installing Rails 3
 
